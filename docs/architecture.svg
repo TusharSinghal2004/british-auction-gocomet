@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="790" viewBox="0 0 1100 790" role="img" aria-labelledby="title desc">
+<title id="title">GoComet RFQ System - High-Level Architecture</title><desc id="desc">Buyer and supplier browsers use a frontend that calls a Node.js API. The API validates auction rules and atomically writes auctions, bid history and activity events to SQLite.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 L8 3 L0 6Z" fill="#087c68"/></marker><style>text{font-family:Arial,sans-serif;fill:#233d36}.title{font-size:28px;font-weight:700}.heading{font-size:18px;font-weight:700}.label{font-size:14px}.note{font-size:13px;fill:#63776d}.box{fill:white;stroke:#b9d5c7;stroke-width:2;rx:12}.arrow{fill:none;stroke:#087c68;stroke-width:2;marker-end:url(#arrow)}</style></defs>
+<rect width="1100" height="790" fill="#f6f9f7"/>
+<text x="55" y="55" class="title">GoComet | British Auction RFQ</text><text x="55" y="83" class="note">High-level architecture - one local Node.js application with persistent SQLite storage</text>
+<rect x="100" y="120" width="380" height="75" class="box"/><text x="290" y="151" text-anchor="middle" class="heading">Buyer browser</text><text x="290" y="175" text-anchor="middle" class="label">Create RFQs and monitor auctions</text>
+<rect x="620" y="120" width="380" height="75" class="box"/><text x="810" y="151" text-anchor="middle" class="heading">Supplier browser</text><text x="810" y="175" text-anchor="middle" class="label">Submit quotes and view rankings</text>
+<path d="M290 195 V225 H550 V250" class="arrow"/><path d="M810 195 V225 H550" fill="none" stroke="#087c68" stroke-width="2"/>
+<rect x="240" y="250" width="620" height="80" class="box"/><text x="550" y="281" text-anchor="middle" class="heading">Frontend | HTML, CSS, JavaScript</text><text x="550" y="307" text-anchor="middle" class="label">RFQ list, forms, leaderboard, countdowns and activity log</text>
+<path d="M550 330 V380" class="arrow"/><text x="570" y="358" class="note">HTTP / JSON - refresh every 5 seconds</text>
+<rect x="240" y="380" width="620" height="80" class="box"/><text x="550" y="411" text-anchor="middle" class="heading">Backend | Node.js HTTP API</text><text x="550" y="437" text-anchor="middle" class="label">RFQ creation, quote submission and current auction details</text>
+<path d="M550 460 V500" class="arrow"/>
+<rect x="240" y="500" width="620" height="85" class="box"/><text x="550" y="530" text-anchor="middle" class="heading">Auction rules and validation</text><text x="550" y="554" text-anchor="middle" class="label">Rank suppliers - evaluate triggers - cap extensions at forced close</text><text x="550" y="575" text-anchor="middle" class="note">Bid, deadline update and audit events commit in one transaction</text>
+<path d="M550 585 V625" class="arrow"/>
+<rect x="240" y="625" width="620" height="85" rx="12" fill="#e7f3ec" stroke="#87b39b" stroke-width="2"/><text x="550" y="656" text-anchor="middle" class="heading">SQLite database | WAL mode</text><text x="550" y="683" text-anchor="middle" class="label">auctions (1) ---- (N) bids | auctions (1) ---- (N) activity</text>
+<text x="550" y="752" text-anchor="middle" class="note">Local demo: buyer and supplier flows share one UI; authentication is outside the assignment scope.</text>
+</svg>
